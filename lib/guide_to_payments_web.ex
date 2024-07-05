@@ -86,6 +86,7 @@ defmodule CoreWeb do
       # Core UI components and translation
       import CoreWeb.CoreComponents
       import CoreWeb.Gettext
+      import CoreWeb.LayoutComponents
 
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS
