@@ -20,7 +20,9 @@ defmodule CoreWeb.Router do
   scope "/", CoreWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    live_session :public_user, on_mount: [] do
+      live "/", HomeLive, :mount
+    end
   end
 
   # Other scopes may use custom stacks.
