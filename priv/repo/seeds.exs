@@ -16,7 +16,8 @@
     name: "Ziyan Junaideen",
     phone: "+94712477701",
     email: "ziyan@jdeen.com",
-    password: "m1cmPlxp@ssw0rd"
+    password: "m1cmPlxp@ssw0rd",
+    role: :admin
   })
   |> Core.Repo.insert()
 

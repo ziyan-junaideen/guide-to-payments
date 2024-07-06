@@ -75,6 +75,16 @@ defmodule CoreWeb.Router do
     end
   end
 
+  scope "/admin", CoreWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
+    live_session :require_authenticated_admin,
+      on_mount: [{CoreWeb.UserAuth, :ensure_authenticated_admin}] do
+      live "/", AdminDashboardLive, :index
+      live "/posts", AdminPostsLive, :index
+    end
+  end
+
   scope "/", CoreWeb do
     pipe_through [:browser]
 
