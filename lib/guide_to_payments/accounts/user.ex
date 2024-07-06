@@ -2,7 +2,12 @@ defmodule Core.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @roles [:admin, :user]
+
   schema "users" do
+    field :name, :string
+    field :phone, :string
+    field :role, Ecto.Enum, values: @roles, default: :user
     field :email, :string
     field :password, :string, virtual: true, redact: true
     field :hashed_password, :string, redact: true
@@ -37,7 +42,8 @@ defmodule Core.Accounts.User do
   """
   def registration_changeset(user, attrs, opts \\ []) do
     user
-    |> cast(attrs, [:email, :password])
+    |> cast(attrs, [:name, :phone, :role, :email, :password])
+    |> validate_required([:name])
     |> validate_email(opts)
     |> validate_password(opts)
   end

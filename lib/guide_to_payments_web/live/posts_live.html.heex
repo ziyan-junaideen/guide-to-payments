@@ -1,0 +1,6 @@
+<h1 class="text-lg font-bold">Posts</h1>
+
+<div :for={post <- @posts}>
+  <h2><%= post.title %></h2>
+  <.link href={~p"/posts/#{post.slug}"}>Read more</.link>
+</div>

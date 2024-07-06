@@ -21,7 +21,9 @@ defmodule CoreWeb.Router do
     pipe_through :browser
 
     live_session :public_user, on_mount: [] do
-      live "/", HomeLive, :mount
+      live "/", HomeLive, :show
+      live "/posts", PostsLive, :index
+      live "/posts/:slug", PostLive, :show
     end
   end
 
