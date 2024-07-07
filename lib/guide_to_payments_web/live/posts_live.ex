@@ -14,7 +14,7 @@ defmodule CoreWeb.PostsLive do
       )
 
     socket
-    |> assign(:title, "Blog Posts")
+    |> assign(:page_title, "Blog Posts")
     |> assign(:current_page, "posts")
     |> assign(:posts, posts)
     |> (&{:noreply, &1}).()
