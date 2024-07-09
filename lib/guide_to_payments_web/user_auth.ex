@@ -164,6 +164,21 @@ defmodule CoreWeb.UserAuth do
     end
   end
 
+  def on_mount(:ensure_authenticated_admin, _params, session, socket) do
+    socket = mount_current_user(socket, session)
+
+    case socket.assigns.current_user do
+      %{role: :admin} ->
+        {:cont, socket}
+
+      _ ->
+        socket
+        |> Phoenix.LiveView.put_flash(:error, "You must an admin to access this page.")
+        |> Phoenix.LiveView.redirect(to: ~p"/users/log_in")
+        |> (&{:halt, &1}).()
+    end
+  end
+
   def on_mount(:redirect_if_user_is_authenticated, _params, session, socket) do
     socket = mount_current_user(socket, session)
 

@@ -1,5 +1,5 @@
 defmodule CoreWeb.UserConfirmationLive do
-  use CoreWeb, :live_view
+  use CoreWeb, {:live_view, layout: :auth}
 
   alias Core.Accounts
 

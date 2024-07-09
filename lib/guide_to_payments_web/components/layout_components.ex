@@ -16,6 +16,7 @@ defmodule CoreWeb.LayoutComponents do
 
   def nav_link(assigns) do
     ~H"""
+    <div class="text-blue"></div>
     <.link
       href={@href}
       class={[

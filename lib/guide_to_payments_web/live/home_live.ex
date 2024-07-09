@@ -3,7 +3,7 @@ defmodule CoreWeb.HomeLive do
 
   def mount(_params, _session, socket) do
     socket
-    |> assign(:title, "Welcome to Guide to Payments")
+    |> assign(:page_title, "Welcome to your GuideToPayments")
     |> assign(:current_page, "home")
     |> (&{:ok, &1}).()
   end

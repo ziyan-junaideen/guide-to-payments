@@ -1,5 +1,5 @@
 defmodule CoreWeb.UserRegistrationLive do
-  use CoreWeb, :live_view
+  use CoreWeb, {:live_view, layout: :auth}
 
   alias Core.Accounts
   alias Core.Accounts.User

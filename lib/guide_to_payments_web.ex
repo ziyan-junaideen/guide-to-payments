@@ -49,10 +49,12 @@ defmodule CoreWeb do
     end
   end
 
-  def live_view do
+  def live_view(opts \\ []) do
+    layout = Keyword.get(opts, :layout, :app)
+
     quote do
       use Phoenix.LiveView,
-        layout: {CoreWeb.Layouts, :app}
+        layout: if(unquote(layout), do: {CoreWeb.Layouts, unquote(layout)}, else: false)
 
       unquote(html_helpers())
     end
@@ -108,6 +110,10 @@ defmodule CoreWeb do
   @doc """
   When used, dispatch to the appropriate controller/live_view/etc.
   """
+  defmacro __using__({which, opts}) when is_atom(which) do
+    apply(__MODULE__, which, [opts])
+  end
+
   defmacro __using__(which) when is_atom(which) do
     apply(__MODULE__, which, [])
   end

@@ -21,7 +21,9 @@ defmodule CoreWeb.Router do
     pipe_through :browser
 
     live_session :public_user, on_mount: [] do
-      live "/", HomeLive, :mount
+      live "/", HomeLive, :show
+      live "/posts", PostsLive, :index
+      live "/posts/:slug", PostLive, :show
     end
   end
 
@@ -70,6 +72,16 @@ defmodule CoreWeb.Router do
       on_mount: [{CoreWeb.UserAuth, :ensure_authenticated}] do
       live "/users/settings", UserSettingsLive, :edit
       live "/users/settings/confirm_email/:token", UserSettingsLive, :confirm_email
+    end
+  end
+
+  scope "/admin", CoreWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
+    live_session :require_authenticated_admin,
+      on_mount: [{CoreWeb.UserAuth, :ensure_authenticated_admin}] do
+      live "/", AdminDashboardLive, :index
+      live "/posts", AdminPostsLive, :index
     end
   end
 
