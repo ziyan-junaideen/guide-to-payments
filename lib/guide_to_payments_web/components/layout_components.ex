@@ -5,6 +5,11 @@ defmodule CoreWeb.LayoutComponents do
 
   use Phoenix.Component
 
+  def navbar(assigns) do
+    ~H"""
+    """
+  end
+
   attr :href, :string, default: "#"
   attr :active, :boolean, default: false
   slot :inner_block, required: true

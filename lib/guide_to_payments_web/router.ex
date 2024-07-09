@@ -84,4 +84,8 @@ defmodule CoreWeb.Router do
       live "/users/confirm", UserConfirmationInstructionsLive, :new
     end
   end
+
+  scope "/admin", CoreWeb do
+    pipe_through [:browser]
+  end
 end
