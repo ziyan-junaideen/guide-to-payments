@@ -1,0 +1,22 @@
+<h1>Welcome to the Admin Blog Posts</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Views</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= for post <- @posts do %>
+      <tr>
+        <td><%= post.title %></td>
+        <td><%= post.views %></td>
+        <td>
+          <.link href={~p"/admin/posts/#{post.id}/edit"}>Edit</.link>
+          <.link href={~p"/posts/#{post.slug}"}>View</.link>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
