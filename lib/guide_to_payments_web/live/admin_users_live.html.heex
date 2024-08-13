@@ -1,0 +1,23 @@
+<h1>Users</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Views</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= for user <- @users do %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.role %></td>
+        <td><%= user.email %></td>
+        <td>
+          <.link href={~p"/admin/users/#{user.id}/edit"}>Edit</.link>
+          <.link href={~p"/admin/users/#{user.id}"}>View</.link>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
