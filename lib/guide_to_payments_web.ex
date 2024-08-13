@@ -87,6 +87,7 @@ defmodule CoreWeb do
       import Phoenix.HTML
       # Core UI components and translation
       import CoreWeb.CoreComponents
+      import CoreWeb.FormComponents
       import CoreWeb.Gettext
       import CoreWeb.LayoutComponents
 
